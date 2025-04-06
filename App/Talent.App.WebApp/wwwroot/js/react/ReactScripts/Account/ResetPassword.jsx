@@ -50,7 +50,6 @@ export default class ResetPassword extends React.Component {
             contentType: 'application/json',
             dataType: 'json',
             success: function (response) {
-                console.log(response)
                 if (response.success) {
                     if (response.isTokenValid) {
                         this.setState({
@@ -170,7 +169,6 @@ export default class ResetPassword extends React.Component {
         return (error.length === 0 ? false : true);
     };
     render() {
-        console.log(this.state.tokenValid);
         return (
             <Container text>
                 <br /> <br />

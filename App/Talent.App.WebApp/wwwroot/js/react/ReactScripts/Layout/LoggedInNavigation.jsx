@@ -34,7 +34,6 @@ export class LoggedInNavigation extends React.Component {
                 }
             }.bind(this),
             error: function (res) {
-                console.log("Not logged in!!")
             }.bind(this)
         })
     }
