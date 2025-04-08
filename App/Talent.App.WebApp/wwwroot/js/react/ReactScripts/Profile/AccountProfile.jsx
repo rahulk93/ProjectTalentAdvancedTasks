@@ -112,7 +112,6 @@ export default class AccountProfile extends React.Component {
             type: "POST",
             data: JSON.stringify(this.state.profileData),
             success: function (res) {
-                console.log(res)
                 if (res.success == true) {
                     TalentUtil.notification.show("Profile updated sucessfully", "success", null, null)
                 } else {
@@ -121,9 +120,6 @@ export default class AccountProfile extends React.Component {
 
             }.bind(this),
             error: function (res, a, b) {
-                console.log(res)
-                console.log(a)
-                console.log(b)
             }
         })
     }

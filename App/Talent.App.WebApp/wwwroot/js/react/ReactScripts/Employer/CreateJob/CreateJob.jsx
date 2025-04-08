@@ -95,9 +95,7 @@ export default class CreateJob extends React.Component {
     }
     addUpdateJob() {
         var jobData = this.state.jobData;
-        console.log("data to save:", jobData);
         //jobData.jobDetails.startDate = jobData.jobDetails.startDate.toDate();
-        console.log("date:", jobData.jobDetails.startDate);
         var cookies = Cookies.get('talentAuthToken');   
         $.ajax({
             url: 'http://localhost:51689/listing/listing/createUpdateJob',
@@ -127,7 +125,6 @@ export default class CreateJob extends React.Component {
         this.setState({
             jobData:data
         })
-        console.log(data);
     }
    
     render() {

@@ -73,15 +73,12 @@ export default class ManageJob extends React.Component {
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
-                console.log(res);
                 this.setState({ loadJobs: res.myJobs, totalPages: Math.ceil(res.totalCount / 6) }, callback);
             }.bind(this),
             error: function (res, a, b) {
                 //this.init();
 
-                console.log(res)
-                console.log(a)
-                console.log(b)
+
 
             }.bind(this)
         })

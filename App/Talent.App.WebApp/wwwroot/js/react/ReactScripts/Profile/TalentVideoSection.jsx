@@ -16,7 +16,7 @@ export class TalentVideoSection extends Component {
         let newVideos = []
         let newValue = true;
 
-        this.props.videos.forEach(x => console.log(x))
+        this.props.videos.forEach(x =>)
 
         this.props.videos.forEach(function (x) {
 
