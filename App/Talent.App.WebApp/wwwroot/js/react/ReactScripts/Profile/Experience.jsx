@@ -1,15 +1,18 @@
 ﻿/* Experience section */
 import React from 'react';
-import Cookies from 'js-cookie';
+import ExperienceItem from './ExperienceItem.jsx'
 
 export default class Experience extends React.Component {
     constructor(props) {
         super(props);
-       
     };
-    
-    render() {
 
-        
+    render() {
+        return (
+            <ExperienceItem
+                itemData={this.props.experienceData}
+                updateProfileData={this.props.updateProfileData}
+            />
+        )
     }
 }
