@@ -37,16 +37,9 @@ export default class VisaStatus extends React.Component {
     }
 
     isVisaTypeVisa() {
-        const visaTypeLowercase =
-            (typeof this.props.visaStatus === "string") ?
-                this.props.visaStatus.toLowerCase()
-                : "";
-        if (visaTypeLowercase.includes("visa")) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        const visaStatus =
+            this.props.visaStatus;
+        return typeof visaStatus === "string" && visaStatus.toLowerCase().includes("visa");
     }
 
     handleDateChange(date) {

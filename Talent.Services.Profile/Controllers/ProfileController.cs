@@ -141,6 +141,12 @@ namespace Talent.Services.Profile.Controllers
             try
             {
                 String talentId = _userAppContext.CurrentUserId;
+                
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 var userProfile = await _profileService.GetTalentProfile(talentId);
 
                 return Json(new { Success = true, data = userProfile.Languages });
@@ -158,6 +164,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+               
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.AddUpdateLanguage(language, talentId))
                 {
                     return Json(new { Success = true });
@@ -173,6 +185,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+                
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.AddUpdateLanguage(language, talentId))
                 {
                     return Json(new { Success = true });
@@ -188,6 +206,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+                
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.DeleteLanguage(language, talentId))
                 {
                     return Json(new { Success = true });
@@ -203,6 +227,12 @@ namespace Talent.Services.Profile.Controllers
             try
             {
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 var userProfile = await _profileService.GetTalentProfile(talentId);
 
                 return Json(new { Success = true, data = userProfile.Skills });
@@ -220,6 +250,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.AddUpdateSkill(skill, talentId))
                 {
                     return Json(new { Success = true });
@@ -235,6 +271,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.AddUpdateSkill(skill, talentId))
                 {
                     return Json(new { Success = true });
@@ -250,6 +292,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.DeleteSkill(skill, talentId))
                 {
                     return Json(new { Success = true });
@@ -265,6 +313,12 @@ namespace Talent.Services.Profile.Controllers
             try
             {
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 var userProfile = await _profileService.GetTalentProfile(talentId);
 
                 return Json(new { Success = true, data = userProfile.Experience });
@@ -282,6 +336,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.AddUpdateExperience(experience, talentId))
                 {
                     return Json(new { Success = true });
@@ -297,6 +357,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.AddUpdateExperience(experience, talentId))
                 {
                     return Json(new { Success = true });
@@ -312,6 +378,12 @@ namespace Talent.Services.Profile.Controllers
             if (ModelState.IsValid)
             {
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.DeleteExperience(experience, talentId))
                 {
                     return Json(new { Success = true });
@@ -367,6 +439,12 @@ namespace Talent.Services.Profile.Controllers
             try
             {
                 String talentId = String.IsNullOrWhiteSpace(Id) ? _userAppContext.CurrentUserId : Id;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 var userProfile = await _profileService.GetTalentProfile(talentId);
                 string profilePhotoUrl = "";
                 if (userProfile.ProfilePhoto != null)
@@ -391,8 +469,20 @@ namespace Talent.Services.Profile.Controllers
         {
             try
             {
+
+                if (Request.Form.Files == null || Request.Form.Files.Count == 0)
+                {
+                    return Json(new { Success = false, Message = "No file uploaded" });
+                }
+
                 IFormFile file = Request.Form.Files[0];
                 String talentId = _userAppContext.CurrentUserId;
+
+                if (String.IsNullOrWhiteSpace(talentId))
+                {
+                    return Json(new { Success = false, Message = "User ID is invalid" });
+                }
+
                 if (await _profileService.UpdateTalentPhoto(talentId, file))
                 {
                     return Json(new { Success = true });
