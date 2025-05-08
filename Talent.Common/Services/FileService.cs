@@ -16,6 +16,7 @@ namespace Talent.Common.Services
         private readonly IHostingEnvironment _environment;
         private readonly string _tempFolder;
         private IAwsService _awsService;
+        private readonly string _bucketName;
 
         public FileService(IHostingEnvironment environment, 
             IAwsService awsService)
@@ -23,24 +24,58 @@ namespace Talent.Common.Services
             _environment = environment;
             _tempFolder = "images\\";
             _awsService = awsService;
+            _bucketName = "talent-standard";
         }
 
         public async Task<string> GetFileURL(string id, FileType type)
         {
-            //Your code here;
-            throw new NotImplementedException();
+            string fileUrl = await _awsService.GetStaticUrl(id, _bucketName);
+            return fileUrl;
+        }
+
+        public async Task<string> GetPresignedFileURL(string id, FileType type)
+        {
+            string fileUrl = await _awsService.GetPresignedUrlObject(id, _bucketName);
+            return fileUrl;
         }
 
         public async Task<string> SaveFile(IFormFile file, FileType type)
         {
-            //Your code here;
-            throw new NotImplementedException();
+            try
+            {
+                var uniqueFileName = ($"{DateTime.Now.Ticks}_{file.FileName}");
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+
+                    await file.CopyToAsync(memoryStream);
+                    memoryStream.Position = 0;
+                    bool uploadSuccess = await _awsService.PutFileToS3(uniqueFileName, memoryStream, _bucketName, false);
+                    if (!uploadSuccess)
+                    {
+                        return "";
+                    }
+                }
+                return uniqueFileName;
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         public async Task<bool> DeleteFile(string id, FileType type)
         {
-            //Your code here;
-            throw new NotImplementedException();
+            try
+            {
+                var removeSuccess = await _awsService.RemoveFileFromS3(id, _bucketName);
+                if (!removeSuccess)
+                    return false;
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
 
