@@ -21,8 +21,8 @@ export default class SocialMediaLinkedAccount extends React.Component {
             newData: linkedAccounts
         }
         this.schema = Yup.object().shape({
-            linkedIn: Yup.string().matches(TalentUtil.linkedInRegExp(), 'Invalid LinkedIn URL.'),
-            github: Yup.string().matches(TalentUtil.githubRegExp(), 'Invalid GitHub URL.'),
+            linkedIn: Yup.string().matches(TalentUtil.linkedInRegExp, 'Invalid LinkedIn URL.'),
+            github: Yup.string().matches(TalentUtil.githubRegExp, 'Invalid GitHub URL.'),
         })
 
         this.openEdit = this.openEdit.bind(this);

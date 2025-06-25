@@ -349,7 +349,7 @@ export default class ExperienceItem extends React.Component {
 
     getItems() {
         var cookies = Cookies.get('talentAuthToken');
-        const getUrl = 'http://localhost:60290/profile/profile/getExperience';
+        const getUrl = 'https://advanceservicesprofile.azurewebsites.net/profile/profile/getExperience';
         $.ajax({
             url: getUrl,
             headers: {
@@ -370,7 +370,7 @@ export default class ExperienceItem extends React.Component {
 
     addItem(data) {
         var cookies = Cookies.get('talentAuthToken');
-        const addUrl = 'http://localhost:60290/profile/profile/addExperience';
+        const addUrl = 'https://advanceservicesprofile.azurewebsites.net/profile/profile/addExperience';
         $.ajax({
             url: addUrl,
             headers: {
@@ -396,7 +396,7 @@ export default class ExperienceItem extends React.Component {
 
     deleteItem(data) {
         var cookies = Cookies.get('talentAuthToken');
-        const deleteUrl = 'http://localhost:60290/profile/profile/deleteExperience';
+        const deleteUrl = 'https://advanceservicesprofile.azurewebsites.net/profile/profile/deleteExperience';
         $.ajax({
             url: deleteUrl,
             headers: {

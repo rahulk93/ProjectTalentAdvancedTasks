@@ -24,7 +24,7 @@ namespace Talent.Common.Services
             _environment = environment;
             _tempFolder = "images\\";
             _awsService = awsService;
-            _bucketName = "talent-standard";
+            _bucketName = "projecttalentadvancedtasks";
         }
 
         public async Task<string> GetFileURL(string id, FileType type)
