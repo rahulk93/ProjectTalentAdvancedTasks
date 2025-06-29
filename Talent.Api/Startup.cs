@@ -88,7 +88,7 @@ namespace Talent.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("AllowWebAppAccess");
             app.UseMvc();
         }
     }

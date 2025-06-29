@@ -21,6 +21,15 @@ namespace Talent.App.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowWebAppAccess", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
             services.AddMvc();
         }
 
@@ -38,6 +47,8 @@ namespace Talent.App.WebApp
             }
 
             app.UseStaticFiles();
+
+            app.UseCors("AllowWebAppAccess");
 
             app.UseMvc(routes =>
             {

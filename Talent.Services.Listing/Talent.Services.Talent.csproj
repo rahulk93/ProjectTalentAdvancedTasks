@@ -13,7 +13,9 @@
     <AssemblyName>Talent.Services.Talent</AssemblyName>
     <RootNamespace>Talent.Services.Talent</RootNamespace>
   </PropertyGroup>
-
+	<PropertyGroup>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+	</PropertyGroup>
   <ItemGroup>
     <Folder Include="Domain\Models\" />
     <Folder Include="wwwroot\" />

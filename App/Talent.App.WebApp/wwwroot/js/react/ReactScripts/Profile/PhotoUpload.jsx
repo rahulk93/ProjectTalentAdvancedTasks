@@ -27,7 +27,7 @@ export default class PhotoUpload extends Component {
         var cookies = Cookies.get('talentAuthToken');
 
         $.ajax({
-            url: 'http://localhost:60290/profile/profile/getProfilePhoto',
+            url: 'https://advanceservicesprofile.azurewebsites.net/profile/profile/getProfilePhoto',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ export default class PhotoUpload extends Component {
             var cookies = Cookies.get('talentAuthToken');
 
             $.ajax({
-                url: 'http://localhost:60290/profile/profile/UpdateProfilePhoto',
+                url: 'https://advanceservicesprofile.azurewebsites.net/profile/profile/UpdateProfilePhoto',
                 headers: {
                     'Authorization': 'Bearer ' + cookies
                 },
