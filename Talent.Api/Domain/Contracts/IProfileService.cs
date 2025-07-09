@@ -15,5 +15,6 @@ namespace Talent.Api.Domain.Contracts
         Task<TalentProfileViewModel> GetTalentProfile(string Id);
         Task<IEnumerable<TalentVideoMobileViewModel>> GetTalentVideoFeed(string employerId, FeedIncrementModel model);
         Task<TalentSnapshotMobileViewModel> GetTalentSnapshot(string talentId);
+        Task<IEnumerable<TalentSnapshotMobileViewModel>> GetTalentSnapshotList(string employerId, FeedIncrementModel increment);
     }
 }

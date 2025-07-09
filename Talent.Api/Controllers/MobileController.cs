@@ -134,5 +134,20 @@ namespace Talent.Api.Controllers
                 return Json( new { Success = false, e.Message } );
             }
         }
+
+        [HttpGet("getTalentSnapshotList")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetTalentSnapshotList(FeedIncrementModel increment)
+        {
+            try
+            {
+                string employerId = _userAppContext.CurrentUserId;
+                return Json(new { Success = true, Data = await _profileService.GetTalentSnapshotList(employerId, increment) });
+            }
+            catch (Exception e)
+            {
+                return Json(new { Success = false, e.Message });
+            }
+        }
     }
 }

@@ -1,0 +1,32 @@
+﻿/* Style TalentCard profile cards */
+.talent-gridColumn {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 0px;
+    margin: 0px 0;
+    padding: 0px;
+}
+
+/* Style talent card header */
+.card-header {
+    padding: 1em !important; /* Remove padding from the card content */
+}
+
+/* Style talent card content */
+.card-content {
+    padding: 0 !important; /* Remove padding from the card content */
+}
+
+/* Style talent card grid column */
+.talent-gridColumnLeft {
+    padding-right: 0 !important; /* Remove padding from the card content */
+}
+
+.talent-gridColumnRight {
+    padding-left: 0 !important; /* Remove padding from the card content */
+}
+
+/* Style talent details */
+.talent-details {
+    padding: 1em !important; /* Adjust padding from the card content */
+}
