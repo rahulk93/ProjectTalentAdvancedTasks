@@ -638,8 +638,88 @@ namespace Talent.Services.Profile.Domain.Services
 
         public async Task<IEnumerable<TalentSnapshotViewModel>> GetTalentSnapshotList(string employerOrJobId, bool forJob, int position, int increment)
         {
-            //Your code here;
-            throw new NotImplementedException();
+            try
+            {
+                var query = _userRepository.GetQueryable();
+
+                var paginatedUsers = query
+                    .Skip((position) * increment)
+                    .Take(increment)
+                    .Select(u => new TalentToSnapshot
+                    {
+                        Id = u.Id,
+                        FirstName = u.FirstName,
+                        LastName = u.LastName,
+                        ProfilePhotoUrl = u.ProfilePhotoUrl,
+                        VideoName = u.VideoName,
+                        CvName = u.CvName,
+                        Summary = u.Summary,
+                        VisaStatus = u.VisaStatus,
+                        Skills = u.Skills,
+                        Experience = u.Experience,
+                        LinkedAccounts = u.LinkedAccounts
+                    })
+                    .ToList();
+
+                List<TalentSnapshotViewModel> snapshotUserList = new List<TalentSnapshotViewModel>();
+
+                if (paginatedUsers.Count() == 0)
+                {
+                    return snapshotUserList;
+                }
+
+                foreach (var user in paginatedUsers)
+                {
+                    string currentEmployer = "";
+                    string currentPosition = "";
+
+
+                    if (user.Experience != null)
+                    {
+                        foreach (var experience in user.Experience)
+                        {
+                            if (experience.End == null)
+                            {
+                                currentEmployer = experience.Company;
+                                currentPosition = experience.Position;
+                            }
+                        }
+                    }
+
+
+                    List<string> skills = new List<string>();
+                    if (user.Skills != null)
+                    {
+                        foreach (UserSkill skill in user.Skills)
+                        {
+                            skills.Add(skill.Skill);
+                        }
+                    }
+
+
+                    TalentSnapshotViewModel snapshotUser = new TalentSnapshotViewModel()
+                    {
+                        Id = user.Id,
+                        Name = (user?.FirstName ?? "") + " " + (user?.LastName ?? ""),
+                        PhotoId = user?.ProfilePhotoUrl,
+                        VideoUrl = user?.VideoName,
+                        CVUrl = user?.CvName,
+                        Summary = user?.Summary,
+                        CurrentEmployment = currentEmployer,
+                        Position = currentPosition,
+                        Visa = user?.VisaStatus,
+                        Skills = skills,
+                        LinkedIn = user?.LinkedAccounts?.LinkedIn,
+                        Github = user?.LinkedAccounts?.Github
+                    };
+                    snapshotUserList.Add(snapshotUser);
+                }
+                return snapshotUserList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<IEnumerable<TalentSnapshotViewModel>> GetTalentSnapshotList(IEnumerable<string> ids)
