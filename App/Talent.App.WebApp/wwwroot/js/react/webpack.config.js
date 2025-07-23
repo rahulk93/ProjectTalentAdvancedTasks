@@ -25,10 +25,24 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: /\.module\.css$/,  // Exclude CSS files with .module.css extension
                 loaders: [
                     'style-loader',
                     'css-loader?modules'
                 ]
+            },
+            {
+                test: /\.module\.css$/,  // Target CSS files with .module.css extension
+                use: [
+                    'style-loader',  // Inject styles into DOM
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,  // Enable CSS Modules
+                            sourceMap: true,
+                        },
+                    },
+                ],
             }
         ]
     }

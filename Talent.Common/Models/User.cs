@@ -50,7 +50,13 @@ namespace Talent.Common.Models
         public string UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
         public Login Login { get; set; }
-
+        public string UserType { get; set; }
+        public string TalentId { get; set; }
+        public string EmployerId { get; set; }
+        public string RecruiterId { get; set; }
+        public string PrimaryCV { get; set; }
+        public List<string> TalentCVs { get; set; }
+        
         public User()
         {
             Languages = new List<UserLanguage>();
