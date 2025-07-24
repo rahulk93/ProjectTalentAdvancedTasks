@@ -75,7 +75,7 @@ export default class TalentFeed extends React.Component {
         try {
             var cookies = Cookies.get('talentAuthToken');
             $.ajax({
-                url: 'http://localhost:60880/api/mobile/getTalentSnapshotList',
+                url: 'https://advanceapi.azurewebsites.net/api/mobile/getTalentSnapshotList',
                 headers: {
                     'Authorization': 'Bearer ' + cookies,
                     'Content-Type': 'application/json'
